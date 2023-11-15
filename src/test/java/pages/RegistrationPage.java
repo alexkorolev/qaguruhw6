@@ -10,16 +10,17 @@ public class RegistrationPage {
     private SelenideElement firstNameLocator = $("#firstName"),
                              lastNameLocator = $("#lastName"),
                             userEmailLocator = $("#userEmail"),
-                            genderLocator = $("#gender-radio-1"),
-                            subjectLocator = $("#subjectsContainer Locator"),
+                            genderLocator = $("#genterWrapper"),
+                            subjectLocator = $("#subjectsContainer input"),
                             hobbiesLocator = $("#hobbiesWrapper"),
                             userNumberLocator = $("#userNumber"),
                             uploadPickureLocator = $("#uploadPicture"),
                             setAddressLocator = $("#currentAddress"),
-                            stateLocator = $("#state Locator"),
-                            cityLocator = $("#city Locator"),
+                            stateLocator = $("#state input"),
+                            cityLocator = $("#city input"),
                             submitLocator = $("#submit"),
-                            calendarLocator = $("#dateOfBirthLocator");
+                            calendarLocator = $("#dateOfBirth input");
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -47,8 +48,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setGender(){
-        genderLocator.doubleClick();
+    public RegistrationPage setGender(String value){
+        genderLocator.$(byText(value)).doubleClick();
         return this;
     }
 
@@ -99,5 +100,4 @@ public class RegistrationPage {
         submitLocator.click();
         return this;
     }
-
 }

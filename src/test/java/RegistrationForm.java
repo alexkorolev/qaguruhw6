@@ -6,36 +6,38 @@ public class RegistrationForm  extends BaseTest{
 
     RegistrationPage registrationPage = new RegistrationPage();
     ResultWindow resultWindow = new ResultWindow();
+    DataForm human = new DataForm();
 
     @Test
     void fillFullPracticeForm() {
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setFirstName("FirstName")
-                .setLastName("LastName")
-                .setUserEmail("test@test.com")
-                .setGender()
-                .setSubject("English")
-                .setUserNumber("9990002233")
-                .setCalendarDate("30", "10", "1985")
-                .setHobbies("Reading")
-                .uploadPicture("my.png")
-                .setAddress("Lenina street 100 , flat 101")
-                .setState("NCR")
-                .setCity("Noida")
+                .setFirstName(human.firstName)
+                .setLastName(human.lastName)
+                .setUserEmail(human.eMail)
+                .setGender(human.gender)
+                .setSubject(human.subjects)
+                .setUserNumber(human.phoneNumber)
+                .setCalendarDate(human.dayOfBirth, human.mounthOfBirth, human.yearhOfBirth)
+                .setHobbies(human.hobbies)
+                .uploadPicture(human.pictureName)
+                .setAddress(human.streetAdress)
+                .setState(human.state)
+                .setCity(human.city)
                 .pressSubmit();
 
         resultWindow.checkModalWindowDisplayed()
-                .checkTableText("FirstName LastName")
-                .checkTableText("test@test.com")
-                .checkTableText("Male")
-                .checkTableText("9990002233")
-                .checkTableText("30 October,1985")
-                .checkTableText("English")
-                .checkTableText("my.png")
-                .checkTableText("Lenina street 100 , flat 101")
-                .checkTableText("NCR Noida");
+                .checkTableText(human.firstName + " " + human.lastName)
+                .checkTableText(human.eMail)
+                .checkTableText(human.gender)
+                .checkTableText(human.phoneNumber)
+                .checkTableText(human.dayOfBirth + " " + human.mounthOfBirth + "," + human.yearhOfBirth)
+                .checkTableText(human.subjects)
+                .checkTableText(human.hobbies)
+                .checkTableText(human.pictureName)
+                .checkTableText(human.streetAdress)
+                .checkTableText(human.state + " " + human.city);
     }
 
     @Test
@@ -43,18 +45,18 @@ public class RegistrationForm  extends BaseTest{
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setFirstName("FirstName")
-                .setLastName("LastName")
-                .setUserEmail("test@test.com")
-                .setGender()
-                .setUserNumber("9990002233")
+                .setFirstName(human.firstName)
+                .setLastName(human.lastName)
+                .setUserEmail(human.eMail)
+                .setGender(human.gender)
+                .setUserNumber(human.phoneNumber)
                 .pressSubmit();
 
         resultWindow.checkModalWindowDisplayed()
-                .checkTableText("FirstName LastName")
-                .checkTableText("test@test.com")
-                .checkTableText("Male")
-                .checkTableText("9990002233");
+                .checkTableText(human.firstName + " " + human.lastName)
+                .checkTableText(human.eMail)
+                .checkTableText(human.gender)
+                .checkTableText(human.phoneNumber);
     }
 
     @Test
@@ -62,16 +64,12 @@ public class RegistrationForm  extends BaseTest{
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setFirstName("FirstName")
-                .setLastName("LastName")
-                .setUserEmail("test@test.com")
-                .setGender()
+                .setFirstName(human.firstName)
+                .setLastName(human.lastName)
+                .setUserEmail(human.eMail)
+                .setGender(human.gender)
                 .pressSubmit();
 
        resultWindow.checkModalWindowNotDisplayed();
-//               checkTableText("FirstName LastName")
-//                .checkTableText("test@test.com")
-//                .checkTableText("Male")
-//                .checkTableText("9990002233");
     }
 }
